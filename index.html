@@ -4,27 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World Wonders</title>
-    <link rel="stylesheet" href="style/base.css" />
+    <link rel="stylesheet" href="./style/base.css" />
   </head>
   <body>
-    <header>
+    <header class="parallax-section" id="parallax-header">
       <nav class="navbar">
-        <a href="#" class="logo">World Wonders</a>
+        <div class="logo">World Wonders</div>
         <ul class="nav-links">
           <li><a href="#">Home</a></li>
           <li><a href="#wonders-container">Wonders</a></li>
-          <li><a href="#footer">Contact</a></li>
+          <li><a href="#feedback-section">Feedback</a></li>
         </ul>
+        <button
+          class="pick-wonder-btn"
+          onclick="document.querySelector('#wonders-container').scrollIntoView({ behavior: 'smooth' });"
+        >
+          Pick a Wonder
+        </button>
       </nav>
-      <div class="parallax" id="parallax-header">
+      <div class="header-content">
         <h1>Explore the Wonders of the World</h1>
+        <p>Discover the most breathtaking landmarks on our planet.</p>
       </div>
     </header>
-    <main id="wonders-container" class="wonders-grid">
-      <!-- Wonders will be dynamically loaded here -->
-    </main>
+
+    <section class="content-section" id="wonders-section">
+      <h2>Our Wonders</h2>
+      <main id="wonders-container" class="wonders-grid">
+        <!-- Wonders will be dynamically loaded here -->
+      </main>
+    </section>
+
+    <section class="parallax-section" id="parallax-between">
+      <div class="overlay-content">
+        <h2>Experience the Majesty of Our World</h2>
+      </div>
+    </section>
+
+    <section id="feedback-section" class="content-section">
+      <h2>Feedback</h2>
+      <form id="feedback-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="wonder">Select a Wonder:</label>
+        <select id="wonder" name="wonder" required>
+          <!-- Options will be populated dynamically using JavaScript -->
+        </select>
+
+        <label for="feedback">Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </section>
+
     <footer id="footer">
-      <p>&copy; 2024 World Wonders | All rights reserved</p>
+      <p>&copy; 2024 World Wonders | Celebrating the beauty of our world.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="js/app.js"></script>
