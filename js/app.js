@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const wondersContainer = document.getElementById("wonders-container");
-  const wonderSelect = document.getElementById("wonder");
+
+  // Check if wondersContainer exists before modifying it
+  if (!wondersContainer) {
+    console.error(
+      "Element with id 'wonders-container' not found in the document."
+    );
+    return;
+  }
 
   try {
     const response = await axios.get(
@@ -8,41 +15,50 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
     const wonders = response.data;
 
-    // Populate wonders on the main page
-    wonders.forEach((wonder) => {
-      const col = document.createElement("div");
-      col.classList.add("col-md-4");
+    if (Array.isArray(wonders) && wonders.length > 0) {
+      wonders.forEach((wonder) => {
+        const col = document.createElement("div");
+        col.classList.add("col-md-4", "mb-4");
 
-      const card = document.createElement("div");
-      card.classList.add("wonder-card", "card");
+        const card = document.createElement("div");
+        card.classList.add("card", "shadow-sm");
 
-      card.innerHTML = `
-              <img src="${wonder.image}" class="card-img-top" alt="${wonder.name}">
-              <div class="card-body">
-                  <h2 class="card-title">${wonder.name}</h2>
-                  <button class="btn btn-warning" onclick="viewDetails('${wonder.id}')">View Details</button>
-              </div>
-          `;
+        // Check if the images array has at least one valid image
+        const imageSrc =
+          wonder.links.images && wonder.links.images.length > 0
+            ? wonder.links.images[0]
+            : "path/to/fallback.jpg";
 
-      col.appendChild(card);
-      wondersContainer.appendChild(col);
+        card.innerHTML = `
+                  <img src="${imageSrc}" class="card-img-top" alt="${
+          wonder.name
+        }">
+                  <div class="card-body">
+                      <h2 class="card-title">${wonder.name}</h2>
+                      <p class="card-text">${wonder.summary}</p>
+                      <button class="btn btn-warning" onclick="viewDetails('${encodeURIComponent(
+                        wonder.name
+                      )}')">View Details</button>
+                  </div>
+              `;
 
-      // Populate the select dropdown for feedback
-      const option = document.createElement("option");
-      option.value = wonder.name;
-      option.textContent = wonder.name;
-      wonderSelect.appendChild(option);
-    });
+        col.appendChild(card);
+        wondersContainer.appendChild(col);
+      });
+    } else {
+      wondersContainer.innerHTML =
+        '<p class="text-warning">No wonders found.</p>';
+    }
   } catch (error) {
-    wondersContainer.innerHTML = `<p class="text-danger">Failed to load wonders. Please try again later.</p>`;
+    wondersContainer.innerHTML = `
+          <div class="alert alert-danger" role="alert">
+              Failed to load wonders. Please try again later.
+          </div>`;
     console.error("Error fetching wonders:", error);
   }
 });
 
-function viewDetails(id) {
-  window.location.href = `pages/wonder-details.html?id=${id}`;
-}
-
-function scrollToSection(sectionId) {
-  document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+// Function to handle navigation to the details page
+function viewDetails(name) {
+  window.location.href = `pages/wonder-details.html?name=${name}`;
 }

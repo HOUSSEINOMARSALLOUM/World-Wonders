@@ -66,17 +66,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  color: #2f5a29;
+  text-shadow: 2px 2px 4px rgba(48, 29, 29, 0.7);
   text-align: center;
 }
 
 #parallax-header {
-  background-image: url("../images/parallax-header.jpg");
+  background-image: url("../public/images/parallax-header.jpg");
 }
 
 #parallax-between {
-  background-image: url("../images/parallax-between.jpg");
+  background-image: url("../public/images/parallax-between.jpg");
 }
 
 .header-content h1 {
