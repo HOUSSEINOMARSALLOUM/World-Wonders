@@ -1,22 +1,81 @@
-body {
-  font-family: Arial, sans-serif;
+/* Basic Reset */
+body,
+h1,
+p,
+ul,
+li,
+a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-header {
-  text-align: center;
-  padding: 1rem;
-  background-color: #4caf50;
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 0.5rem 1rem;
   color: white;
 }
 
+.logo {
+  color: #4caf50;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #4caf50;
+}
+
+/* Parallax Header */
+.parallax {
+  background-image: url("../images/parallax-image.jpg"); /* Replace with a suitable image */
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.parallax h1 {
+  font-size: 2.5rem;
+}
+
+/* Wonders Grid */
 .wonders-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   justify-content: center;
 }
 
@@ -50,14 +109,33 @@ header {
   padding: 0.5rem;
   cursor: pointer;
   font-size: 1rem;
+  transition: background-color 0.3s;
 }
 
 .wonder-card button:hover {
   background-color: #45a049;
 }
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .wonder-card {
     width: 100%;
+  }
+
+  .parallax h1 {
+    font-size: 2rem;
   }
 }

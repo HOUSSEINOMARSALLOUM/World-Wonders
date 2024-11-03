@@ -4,16 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World Wonders</title>
-    <link rel="stylesheet" href="./style/base.css" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script defer src="js/app.js"></script>
+    <link rel="stylesheet" href="style/base.css" />
   </head>
   <body>
     <header>
-      <h1>World Wonders</h1>
+      <nav class="navbar">
+        <a href="#" class="logo">World Wonders</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#wonders-container">Wonders</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="parallax" id="parallax-header">
+        <h1>Explore the Wonders of the World</h1>
+      </div>
     </header>
     <main id="wonders-container" class="wonders-grid">
       <!-- Wonders will be dynamically loaded here -->
     </main>
+    <footer id="footer">
+      <p>&copy; 2024 World Wonders | All rights reserved</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="js/app.js"></script>
   </body>
 </html>
